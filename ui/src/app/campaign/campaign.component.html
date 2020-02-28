@@ -1,0 +1,46 @@
+<mat-form-field>
+
+  <mat-label>
+    <mat-icon class="iconStyle">search</mat-icon>
+    SEARCH
+  </mat-label>
+  <input (keyup)="applyFilter($event)" matInput placeholder="">
+</mat-form-field>
+<div class="mat-elevation-z8">
+  <table [dataSource]="dataSource" class="table-items" mat-table matSort>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="name">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>Name</th>
+      <td *matCellDef="let element" mat-cell><img class="image-items" mat-card-image
+                                                  src="https://material.angular.io/assets/img/examples/shiba2.jpg"/>{{element.name}}
+      </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="duration">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Duration</th>
+      <td *matCellDef="let element" mat-cell> {{element.duration}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="status">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Status</th>
+      <td *matCellDef="let element" mat-cell>
+        <mat-icon class="iconStyle">watch_later</mat-icon>
+        {{element.status}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="addtionalMsg">
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let element" mat-cell> {{element.addtionalMsg}} </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+
